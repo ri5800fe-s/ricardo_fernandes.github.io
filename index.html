@@ -1,22 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Ricardo Fernandes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ricardo Fernandes | Computational Physics</title>
+  
+  <!-- MathJax for rendering physics equations (LaTeX) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/solid.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/navigator.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/統合.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color: #212529;
+      --accent-color: #0066cc;
+      --card-bg: #ffffff;
+      --border-color: #e9ecef;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.7;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      margin-bottom: 40px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0 0 10px 0;
+      color: #111;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #6c757d;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+      margin-top: 40px;
+    }
+
+    .skills-badge {
+      display: inline-block;
+      background: #e2e8f0;
+      color: #4a5568;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-right: 6px;
+      margin-bottom: 8px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--accent-color);
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #6c757d;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <h1>Ricardo Fernandes</h1>
-  <p>Physics student | Computational physics</p>
 
-  <h2>Projects</h2>
+  <header>
+    <h1>Ricardo Fernandes</h1>
+    <p class="subtitle">Physics Student & Specializing in Computational Physics</p>
+  </header>
 
-  <h3>LDMX Trigger Scintillator</h3>
-  <p>Geometry studies and analysis for LDMX.</p>
+  <section id="about">
+    <h2>Technical Toolkit</h2>
+    <!-- Edit these to match your actual programming languages/tools -->
+    <span class="skills-badge">Python</span>
+    <span class="skills-badge">C++</span>
+    <span class="skills-badge">Machine Learning (PyTorch/TensorFlow)</span>
+    <span class="skills-badge">ROOT (CERN)</span>
+    <span class="skills-badge">Geant4</span>
+    <span class="skills-badge">Git</span>
+  </section>
 
-  <h3>Machine Learning</h3>
-  <p>Neural network classification in physics.</p>
+  <section id="projects">
+    <h2>Research & Projects</h2>
 
-  <p>
-    <a href="https://github.com/ri5800fe-s">My GitHub</a>
-  </p>
+    <div class="project-card">
+      <h3>LDMX Trigger Scintillator</h3>
+      <p>Geometry studies, performance optimization, and data analysis for the Light Dark Matter eXperiment (LDMX). Simulating detector responses to predict experimental outcomes.</p>
+      <a href="https://github.com/ri5800fe-s" target="_blank">View Repository →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Machine Learning in High-Energy Physics</h3>
+      <p>Developing neural network classification models to distinguish signal events from background noise in physics datasets. Optimized via custom loss functions.</p>
+      <p style="font-size: 0.95rem; color: #555;">Example implementation: $$ \mathcal{L}_{loss} = \sum (y_i - \hat{y}_i)^2 $$</p>
+      <a href="https://github.com/ri5800fe-s" target="_blank">View Notebook →</a>
+    </div>
+  </section>
+
+  <section id="links">
+    <h2>Connect</h2>
+    <p>
+      <a href="https://github.com/ri5800fe-s" target="_blank">GitHub Profile</a> • 
+      <a href="mailto:your.email@example.com">Email Contact</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Ricardo Fernandes. Built with HTML & CSS.</p>
+  </footer>
+
 </body>
 </html>

@@ -5,8 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FYSN33 Projects | Ricardo Fernandes</title>
   
-  <!-- MathJax for rendering physics equations (LaTeX) -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <!-- Properly configured MathJax for Inline and Block LaTeX -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/tex-mml-chtml.js"></script>
 
   <style>
@@ -77,6 +84,17 @@
       margin-bottom: 5px;
     }
 
+    /* Styled container to keep video dimensions neat and responsive */
+    .project-video {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      margin-top: 15px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background-color: #000;
+    }
+
     a {
       color: var(--accent-color);
       text-decoration: none;
@@ -107,7 +125,12 @@
       <span class="project-num">Project 1</span>
       <h3>Solving the Sod Shock Tube Problem with SPH</h3>
       <p>Implementation of a fluid dynamics solver utilizing Smoothed Particle Hydrodynamics (SPH) to simulate compressible flow profiles and shocks across transient boundary layers.</p>
-      <!-- You can add specific repository/file links here later -->
+      
+      <!-- Video Element for Project 1 -->
+      <video class="project-video" controls muted preload="metadata">
+        <source src="Project 1 - Differential-equations-in-astrophysics/collapse_dt2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
 
     <div class="project-card">
@@ -120,6 +143,12 @@
       <span class="project-num">Project 3</span>
       <h3>Entropic Spring – Rediscovering Hooke’s Law with Monte Carlo</h3>
       <p>Using statistical sampling methods and custom Monte Carlo Markov Chain models to simulate thermodynamic macrostates, effectively reconstructing Hooke's elastic behaviors from microscopic entropy properties.</p>
+      
+      <!-- Video Element for Project 3 -->
+      <video class="project-video" controls muted preload="metadata">
+        <source src="Project 3 - Entropic spring: rediscover Hooke’s law with Monte Carlo/rubberband-visualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </main>
 

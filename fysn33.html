@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FYSN33 Projects | Ricardo Fernandes</title>
+  
+  <!-- MathJax for rendering physics equations (LaTeX) -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color: #212529;
+      --accent-color: #0066cc;
+      --card-bg: #ffffff;
+      --border-color: #e9ecef;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.7;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0 0 10px 0;
+      color: #111;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #6c757d;
+      margin: 0;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+
+    .project-num {
+      color: var(--accent-color);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #6c757d;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="back-link">← Back to Portfolio</a>
+    <h1>Coursework Portfolio</h1>
+    <p class="subtitle">FYSN33 — Applied Computational Physics and Machine Learning</p>
+  </header>
+
+  <main>
+    <div class="project-card">
+      <span class="project-num">Project 1</span>
+      <h3>Solving the Sod Shock Tube Problem with SPH</h3>
+      <p>Implementation of a fluid dynamics solver utilizing Smoothed Particle Hydrodynamics (SPH) to simulate compressible flow profiles and shocks across transient boundary layers.</p>
+      <!-- You can add specific repository/file links here later -->
+    </div>
+
+    <div class="project-card">
+      <span class="project-num">Project 2</span>
+      <h3>Neural-Network Tagger for Hadronic \(V \rightarrow q\bar{q}\) Jets</h3>
+      <p>Constructed an optimized deep learning classifier designed to identify and separate highly boosted hadronic vector boson decays from background QCD noise.</p>
+    </div>
+
+    <div class="project-card">
+      <span class="project-num">Project 3</span>
+      <h3>Entropic Spring – Rediscovering Hooke’s Law with Monte Carlo</h3>
+      <p>Using statistical sampling methods and custom Monte Carlo Markov Chain models to simulate thermodynamic macrostates, effectively reconstructing Hooke's elastic behaviors from microscopic entropy properties.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Ricardo Fernandes. FYSN33 Project Log.</p>
+  </footer>
+
+</body>
+</html>

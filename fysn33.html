@@ -17,12 +17,26 @@
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/dist/tex-mml-chtml.js"></script>
 
   <style>
+    /* CSS Variables for Light Mode */
     :root {
       --bg-color: #f8f9fa;
       --text-color: #212529;
+      --heading-color: #111111;
       --accent-color: #0066cc;
       --card-bg: #ffffff;
       --border-color: #e9ecef;
+      --muted-text: #6c757d;
+    }
+
+    /* CSS Variables for Dark Mode */
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --heading-color: #ffffff;
+      --accent-color: #4da6ff;
+      --card-bg: #1e1e1e;
+      --border-color: #2d2d2d;
+      --muted-text: #a0aec0;
     }
 
     body {
@@ -33,12 +47,14 @@
       max-width: 750px;
       margin: 0 auto;
       padding: 40px 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     header {
       margin-bottom: 30px;
       border-bottom: 2px solid var(--border-color);
       padding-bottom: 20px;
+      position: relative;
     }
 
     .back-link {
@@ -50,13 +66,30 @@
     h1 {
       font-size: 2.2rem;
       margin: 0 0 10px 0;
-      color: #111;
+      color: var(--heading-color);
     }
 
     .subtitle {
       font-size: 1.1rem;
-      color: #6c757d;
+      color: var(--muted-text);
       margin: 0;
+    }
+
+    /* Balanced theme toggle matching the layout design */
+    .theme-toggle-btn {
+      position: absolute;
+      top: 0px;
+      right: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: background 0.2s, border 0.2s;
     }
 
     .project-card {
@@ -66,12 +99,13 @@
       padding: 24px;
       margin-bottom: 20px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
     }
 
     .project-card h3 {
       margin-top: 0;
       margin-bottom: 10px;
-      color: var(--text-color);
+      color: var(--heading-color);
     }
 
     .project-num {
@@ -84,7 +118,6 @@
       margin-bottom: 5px;
     }
 
-    /* Styled container to keep video dimensions neat and responsive */
     .project-video {
       width: 100%;
       max-width: 100%;
@@ -104,10 +137,21 @@
       text-decoration: underline;
     }
 
+    @media (max-width: 480px) {
+      .theme-toggle-btn {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: block;
+        margin-bottom: 15px;
+        width: fit-content;
+      }
+    }
+
     footer {
       margin-top: 60px;
       font-size: 0.9rem;
-      color: #6c757d;
+      color: var(--muted-text);
       text-align: center;
     }
   </style>
@@ -115,7 +159,8 @@
 <body>
 
   <header>
-    <a href="index.html" class="back-link">← Back to Portfolio</a>
+    <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode">&; Dark Mode</button>
     <h1>Coursework Portfolio</h1>
     <p class="subtitle">FYSN33 — Applied Computational Physics and Machine Learning</p>
   </header>
@@ -126,16 +171,15 @@
       <h3>Solving the Sod Shock Tube Problem with SPH</h3>
       <p>Implementation of a fluid dynamics solver utilizing Smoothed Particle Hydrodynamics (SPH) to simulate compressible flow profiles and shocks across transient boundary layers.</p>
       
-      <!-- Video Element for Project 1 -->
       <video class="project-video" controls muted preload="metadata">
-        <source src="FYSN33 - Applied Computational Physics and Machine Learning/Project 1 - Differential-equations-in-astrophysics/collapse_dt2.mp4" type="video/mp4">
+        <source src="project1_simulation.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
 
     <div class="project-card">
       <span class="project-num">Project 2</span>
-      <h3>Neural-Network Tagger for Hadronic V &rarr; qq̄ Jets</h3>
+      <h3>Neural-Network Tagger for Hadronic \(V \rightarrow q\bar{q}\) Jets</h3>
       <p>Constructed an optimized deep learning classifier designed to identify and separate highly boosted hadronic vector boson decays from background QCD noise.</p>
     </div>
 
@@ -144,9 +188,8 @@
       <h3>Entropic Spring – Rediscovering Hooke’s Law with Monte Carlo</h3>
       <p>Using statistical sampling methods and custom Monte Carlo Markov Chain models to simulate thermodynamic macrostates, effectively reconstructing Hooke's elastic behaviors from microscopic entropy properties.</p>
       
-      <!-- Video Element for Project 3 -->
       <video class="project-video" controls muted preload="metadata">
-        <source src="FYSN33 - Applied Computational Physics and Machine Learning/Project 3 - Entropic spring: rediscover Hooke’s law with Monte Carlo/rubberband-visualization.mp4" type="video/mp4">
+        <source src="project3_simulation.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -156,5 +199,34 @@
     <p>&copy; 2026 Ricardo Fernandes. FYSN33 Project Log.</p>
   </footer>
 
+  <!-- SCRIPT TRACKS STATE SYNC ACROSS BOTH PAGES -->
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggleBtn.innerHTML = '&; Light Mode';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      toggleBtn.innerHTML = '&; Dark Mode';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      let newTheme = 'light';
+      
+      if (currentTheme === 'light') {
+        newTheme = 'dark';
+        toggleBtn.innerHTML = '&; Light Mode';
+      } else {
+        toggleBtn.innerHTML = '&; Dark Mode';
+      }
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
 </body>
 </html>

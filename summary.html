@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LDMX Geometry Summary | Ricardo Fernandes</title>
+
+  <style>
+    /* CSS Variables for Light Mode */
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color: #212529;
+      --heading-color: #111111;
+      --accent-color: #0066cc;
+      --card-bg: #ffffff;
+      --border-color: #e9ecef;
+      --muted-text: #6c757d;
+    }
+
+    /* CSS Variables for Dark Mode */
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --heading-color: #ffffff;
+      --accent-color: #4da6ff;
+      --card-bg: #1e1e1e;
+      --border-color: #2d2d2d;
+      --muted-text: #a0aec0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.7;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Fixed Toggle Switch matching index.html */
+    .theme-toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background 0.2s, border 0.2s, color 0.2s;
+      z-index: 1000;
+    }
+
+    header {
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: 0 0 10px 0;
+      color: var(--heading-color);
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--muted-text);
+      margin: 0;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Embedded iframe dimensions */
+    .plot-iframe {
+      width: 100%;
+      height: 550px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: #000;
+      margin-top: 15px;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .theme-toggle-btn {
+        position: static;
+        margin: 0 auto 20px auto;
+        display: block;
+      }
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: var(--muted-text);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+
+  <header>
+    <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+    <h1>LDMX Detector Geometry</h1>
+    <p class="subtitle">Interactive 3D Visualization & Structural Analysis</p>
+  </header>
+
+  <main>
+    <div class="project-card">
+      <h3>Interactive 3D Mesh Response</h3>
+      <p>
+        Use your mouse to interact with the alternative layout. 
+        <strong>Left-click & drag</strong> to rotate, <strong>right-click & drag</strong> to zoom, and <strong>middle-click (or scroll wheel)</strong> to pan around the active elements.
+      </p>
+      
+      <!-- Safe responsive container holding the PyVista HTML file -->
+      <iframe 
+        src="new_geo.html" 
+        class="plot-iframe" 
+        title="LDMX Alternative Geometry 3D Plot">
+      </iframe>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Ricardo Fernandes. High-Energy Physics Simulations.</p>
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggleBtn.innerHTML = '☀️ Light Mode';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      toggleBtn.innerHTML = '🌙 Dark Mode';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      let newTheme = 'light';
+      
+      if (currentTheme === 'light') {
+        newTheme = 'dark';
+        toggleBtn.innerHTML = '☀️ Light Mode';
+      } else {
+        toggleBtn.innerHTML = '🌙 Dark Mode';
+      }
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
+</body>
+</html>
